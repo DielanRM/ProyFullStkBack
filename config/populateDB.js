@@ -1,9 +1,8 @@
 const axios = require('axios')
 const mongoose = require('mongoose')
+const Pelicula = require('../model/peliculaModel')
 
-connectDB()
-
-async function poblarDB() {
+const poblarDB = async () => {
     try {
         const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=c2525d0edb9b982c034d6f755a582ad4');
         const peliculas = response.data.results;
@@ -37,3 +36,5 @@ async function poblarDB() {
         mongoose.connection.close();
     }
 }
+
+module.exports = poblarDB

@@ -9,7 +9,7 @@ const peliculaSchema = mongoose.Schema({
     id: { type: Number, required: true, unique: true },
     original_language: { type: String, required: true },
     original_title: { type: String, required: true },
-    overview: { type: String, required: true },
+    overview: { type: String },
     popularity: { type: Number, required: true },
     poster_path: { type: String, required: true },
     release_date: { type: Date, required: true },
