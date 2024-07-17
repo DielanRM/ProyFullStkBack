@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler')
 const Pelicula = require('../model/peliculaModel')
 
 const getPeliculas = asyncHandler(async (req, res) => {
-    const peliculas = await Pelicula.find()
+    const peliculas = await Pelicula.find({user: req.user.id})
     res.status(200).json(peliculas)
 })
 
@@ -25,7 +25,8 @@ const createPeliculas = asyncHandler(async(req, res) => {
         title: req.body.title,
         video: req.body.video,
         vote_average: req.body.vote_average,
-        vote_count: req.body.vote_count
+        vote_count: req.body.vote_count,
+        user: req.user.id
     })
         
     res.status(201).json(pelicula)
