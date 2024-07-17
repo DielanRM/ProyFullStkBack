@@ -30,10 +30,10 @@ const poblarDB = async () => {
         }
 
         console.log('Base de datos poblada con éxito');
-        mongoose.connection.close();
+        //mongoose.connection.close();
     } catch (error) {
         console.error('Error al poblar la base de datos:', error);
-        mongoose.connection.close();
+        //mongoose.connection.close();
     }
 }
 

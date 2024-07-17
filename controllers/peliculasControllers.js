@@ -7,7 +7,7 @@ const getPeliculas = asyncHandler(async (req, res) => {
 })
 
 const createPeliculas = asyncHandler(async(req, res) => {
-    if(!req.body.text){
+    if(!req.body){
         res.status(400).json({message: "escribe"})
         throw new Error('Escribe el titulo de la pelilcula')
     }
