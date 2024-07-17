@@ -31,16 +31,29 @@ const createPeliculas = asyncHandler(async(req, res) => {
     res.status(201).json(pelicula)
 })
 
-
-
 const updatePelicula = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `updated ${req.params.id}`})
+    
+    const pelicula = await Pelicula.findById(req.params.id)
+
+    if (!pelicula) {
+        res.status(400)
+        throw new Error ('Pelicula no encontrada')
+    }else{
+        const peliculaUpdated = await Pelicula.findByIdAndUpdate(req.params.id, req.body, {new: true}) //Devuelve elemento ya modificado
+        res.status(200).json(peliculaUpdated)
+    }
 })
 
-
-
 const deletePelicula = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `deleted ${req.params.id}`})
+    const pelicula = await Pelicula.findById(req.params.id)
+
+    if (!pelicula) {
+        res.status(400)
+        throw new Error('Pelicula no encontrada')
+    }else{
+        await pelicula.deleteOne()
+        res.status(200).json({id: req.params.id})
+    }
 })
 
 module.exports = {
