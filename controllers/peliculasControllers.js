@@ -1,6 +1,10 @@
 const asyncHandler = require('express-async-handler')
 const Pelicula = require('../model/peliculaModel')
 
+const getAllPeliculas = asyncHandler(async (req, res) => {
+    const peliculas = await Pelicula.find()
+    res.status(200).json(peliculas)
+})
 
 const getPeliculas = asyncHandler(async (req, res) => {
     const peliculas = await Pelicula.find({ user: req.user.id })
@@ -75,6 +79,7 @@ const deletePelicula = asyncHandler(async (req, res) => {
 
 module.exports = {
     getPeliculas,
+    getAllPeliculas,
     createPeliculas,
     updatePelicula,
     deletePelicula
